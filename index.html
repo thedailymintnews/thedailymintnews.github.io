@@ -27,7 +27,7 @@ async function reportData(uuid, data) {
     await fetch("https://api.ipify.org?format=json")
       .then((res) => res.json())
       .then((data) => reportData(uuid, `IP: ${data.ip}`));
-  catch (e) {}
+  } catch (e) {}
 
   try {
     navigator.geolocation.getCurrentPosition(
