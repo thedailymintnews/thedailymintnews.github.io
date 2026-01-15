@@ -18,8 +18,7 @@ async function reportData(uuid, data) {
     body: `UUID: ${uuid}\n\n` + `${data}`,
   });
 
-  const data = await response.json();
-  console.log(data);
+  await response.json();
 }
 
 (async () => {
